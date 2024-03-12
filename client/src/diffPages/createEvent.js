@@ -31,7 +31,7 @@ function CreateEvent() {
                 <Field  
                     id = "inCreateEvent" 
                     name="title" 
-                    placeholder="Ex. Introduction to SWE is cool!" 
+                    placeholder="Ex. Tailgate!" 
                 />
 
                 <label>
@@ -41,7 +41,7 @@ function CreateEvent() {
                 <Field  
                     id = "inCreateEvent" 
                     name="eventDescription" 
-                    placeholder="Ex. Tailgate at 6!" 
+                    placeholder="Ex. 6 PM near NEB!" 
                 />
 
                 <label>
