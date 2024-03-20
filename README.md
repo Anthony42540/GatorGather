@@ -19,9 +19,8 @@ While in the server directory,  run this command to start the server:
 ```bash
 npm start
 ```
-After that, go to the client directory and run the same command:
+After that, open a second terminal and go to the client directory and run the same command:
 ```
-cd ../client
 npm start
 ```
 And there you go, it should work!
