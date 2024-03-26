@@ -57,7 +57,7 @@ function CreateEvent() {
                     placeholder="Ex. Jane Doe." 
                 />
 
-                <button type="submit" onClick={() => {navigate(`/`)}}> Create New Event</button>
+                <button type="submit"> Create New Event</button>
             </Form>
         </Formik>
     </div>
