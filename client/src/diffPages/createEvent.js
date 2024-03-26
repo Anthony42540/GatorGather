@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup"
+import { useNavigate } from "react-router-dom";
 
 function CreateEvent() {
     const initVal = {
@@ -19,6 +20,8 @@ function CreateEvent() {
         eventDescription: yup.string().required("Please write a description for your event!"),
         author: yup.string().min(3).max(12).required("Please write your name or alias!")
     })
+
+    let navigate = useNavigate()
 
     return (
     <div className="createEventForm"> 
@@ -54,7 +57,7 @@ function CreateEvent() {
                     placeholder="Ex. Jane Doe." 
                 />
 
-                <button type="submit"> Create New Event</button>
+                <button type="submit" onClick={() => {navigate(`/`)}}> Create New Event</button>
             </Form>
         </Formik>
     </div>
