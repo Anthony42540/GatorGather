@@ -5,6 +5,8 @@ import * as yup from "yup"
 import { useNavigate } from "react-router-dom";
 
 function CreateEvent() {
+    let navigate = useNavigate()
+
     const initVal = {
         title: "",
         eventDescription: "",
@@ -12,7 +14,7 @@ function CreateEvent() {
     };
 
     const onSubmit = (data) => {
-        axios.post("http://localhost:5000/events", data).then((response) => {});
+        axios.post("http://localhost:5000/events", data).then((response) => {navigate(`/`);});
     };
 
     const valSchema = yup.object().shape({
@@ -20,8 +22,6 @@ function CreateEvent() {
         eventDescription: yup.string().required("Please write a description for your event!"),
         author: yup.string().min(3).max(12).required("Please write your name or alias!")
     })
-
-    let navigate = useNavigate()
 
     return (
     <div className="createEventForm"> 
