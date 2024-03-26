@@ -7,8 +7,13 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Link to="/createEvent">Create a New Event</Link>
-        <Link to="/">Home</Link>
+        <div className="navbar">
+          <span className="tabs">
+            <Link to="/">Home</Link>
+            <Link to="/createEvent">New Post</Link>
+          </span>
+          <span className="title">GatorGather</span>
+        </div>
         <Routes>
           <Route path="/" element={ <Home/> } />
           <Route path="/createEvent" element={ <CreateEvent/> } />
