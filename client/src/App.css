@@ -1,11 +1,53 @@
+@font-face {
+  font-family: titleFont;
+  src: url(AbrilFatface-Regular.ttf);
+}
+
 .App {
   width: 100vw;
   height: auto;
   display: flex;
   align-items: center;
-  padding-top: 40px;
   flex-direction: column;
 }
+
+.navbar {
+  width: 100%;
+  height: 70px;
+  background-color: #0021A5;
+  display: inline;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 30px;
+
+}
+
+.tabs a {
+  display: inline-block;
+  margin-top: 22px;
+  margin-left: 20px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid white;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.tabs a:hover {
+  color: #0021A5;
+  background: white;
+}
+
+.webTitle {
+  margin-top: 10px;
+  float: right;
+  display: inline-flex;
+  color: white;
+  margin-right: 20px;
+  font-family: titleFont;
+  font-size: 40px;
+}
+
 
 body {
   margin: 0;
@@ -16,31 +58,34 @@ body {
 .event .title,
 .event .body,
 .event .footer {
-  border-radius: 85px; 
   overflow: hidden;
 }
 
 .event {
-  width: 2000px;
-  height: 1000px;
+  width: 400px;
+  height: 350px;
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
-  border: 20px solid #FA4616;
-  font-family: Georgia;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 5px solid #0021A5;
+  font-family: 'Courier New', Courier, monospace;
+  border-radius: 10px; 
 }
 
 .event:hover {
-  box-shadow: #0021A5 0px 9px 30px 0px;
+  box-shadow: #000000 0px 0px 10px 0px;
   cursor: pointer;
+  outline: 5px solid rgb(101, 129, 255)
 }
+
 .event .title {
-  flex: 1%;
+  flex: 2%;
   background-color: #0021A5;
   display: grid;
   place-content: center;
   color: white;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .event .body {
@@ -57,7 +102,7 @@ body {
   place-content: center;
   background-color: #0021A5;
   color: white;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .createPostPage {
@@ -79,6 +124,7 @@ body {
   padding: 40px;
   border: 5px solid #0021A5;
   border-radius: 5px;
+  font-family:'Courier New', Courier, monospace
 }
 
 .form #inCreateEvent {
@@ -90,6 +136,7 @@ body {
   padding-left: 10px;
   font-size: 15px;
   overflow-wrap: break-word;
+  font-family:'Courier New', Courier, monospace
 }
 
 .form button {
@@ -99,6 +146,7 @@ body {
   background-color: #0021A5;
   border-radius: 5px;
   color: white;
+  font-family:'Courier New', Courier, monospace
 }
 
 .form button:hover {

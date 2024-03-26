@@ -2,8 +2,11 @@ import React from "react";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup"
+import { useNavigate } from "react-router-dom";
 
 function CreateEvent() {
+    let navigate = useNavigate()
+
     const initVal = {
         title: "",
         eventDescription: "",
@@ -11,7 +14,7 @@ function CreateEvent() {
     };
 
     const onSubmit = (data) => {
-        axios.post("http://localhost:5000/events", data).then((response) => {});
+        axios.post("http://localhost:5000/events", data).then((response) => {navigate(`/`);});
     };
 
     const valSchema = yup.object().shape({
