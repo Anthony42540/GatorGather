@@ -43,31 +43,30 @@ function Login(){
 
     return (
     <div className="createAccountForm"> 
-        <Formik initialValues={ initVal } onSubmit={ onSubmit } validationSchema={ valSchema }> 
-            <Form className="form">
-                <label>log in</label>
-                <ErrorMessage name="username" component="span"/>
-                <Field  
-                    id = "inCreateAccount" 
-                    name="username" 
-                    placeholder="username" 
-                    className="addUsername" 
-                />
-                <ErrorMessage name="password" component="span"/>
-                <Field  
-                    id = "inCreateAccount" 
-                    name="password" 
-                    placeholder="password" 
-                    className="addPassword" 
-                />
-                <button type="submit">log in</button>
-                <div className="loginLink" onClick={() => {navigate("/signup")}}>
-                        or sign up instead
-                </div>
-                
-            </Form>
-        </Formik>
+        <div className="form">
+            <label>sign up</label>
+            <input 
+                type="text" 
+                className="addUsername" 
+                id = "inCreateEvent" 
+                name="username" 
+                placeholder="username" 
+            />
+            <input 
+                type="password" 
+                className="addPassword"
+                id = "inCreateEvent" 
+                name="password" 
+                placeholder="password" 
+            />
+            <button>log in</button>
+            <div className="loginLink" onClick={() => {navigate("/signup")}}>
+                or sign up instead
+            </div>
+        </div>
     </div>
+
+    
     )
 }
 

@@ -60,6 +60,7 @@ function Signup(){
                 <Field  
                     id = "inCreateAccount" 
                     name="password" 
+                    type="password"
                     placeholder="create password" 
                     className="addPassword" 
                 />
