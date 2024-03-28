@@ -1,11 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const { Events} = require("../models");
+const { Events } = require("../models");
 
+// retrieves data from database
 router.get("/", async (req, res) => {
     const listOfEvents = await Events.findAll();
     res.json(listOfEvents);
 });
+
+// retrieves individual event information by ID
+router.get('/byId/:id', async (req, res) => {
+    const id = req.params.id;
+    const event = await Events.findByPk(id);
+    res.json(event);
+})
 
 // Sends data to database MySQl
 router.post("/", async (req, res) => {

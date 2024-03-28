@@ -1,19 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-    const users = sequelize.define("Users", {
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-    });
-
-    return users;
-}
-
-module.exports = (sequelize, DataTypes) => {
     const events = sequelize.define("Events", {
         author: {
             type: DataTypes.STRING,
@@ -29,5 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
+    events.associate = (models) => {
+        events.hasMany(models.Comments, {
+            onDelete: "cascade",
+        });
+    };
     return events;
-}
+};
