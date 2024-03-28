@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from "./diffPages/home"
 import CreateEvent from "./diffPages/createEvent";
 import Event from "./diffPages/event";
+import Login from "./diffPages/login";
+import Signup from "./diffPages/signup";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
           <span className="tabs">
             <Link to="/">home</Link>
             <Link to="/createEvent">new event</Link>
+            <Link to="/login">login</Link>
+            <Link to="/signup">sign up</Link>
           </span>
           <span className="webTitle">GatorGather</span>
         </div>
@@ -19,6 +23,8 @@ function App() {
           <Route path="/" element={ <Home/> } />
           <Route path="/createEvent" element={ <CreateEvent/> } />
           <Route path="/event/:id" element={ <Event/> } />
+          <Route path="/login" element={ <Login/> } />
+          <Route path="/signup" element={ <Signup/> } />
         </Routes>
       </Router>
     </div>
