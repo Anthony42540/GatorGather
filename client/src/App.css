@@ -11,6 +11,7 @@
   flex-direction: column;
 }
 
+/* navigation bar */
 .navbar {
   width: 100%;
   height: 70px;
@@ -18,7 +19,6 @@
   display: inline;
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 30px;
-
 }
 
 .tabs a {
@@ -38,6 +38,19 @@
   background: white;
 }
 
+.signupTab a {
+  display: inline-block;
+  margin-top: 22px;
+  margin-left: 20px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.signupTab a:hover {
+  color: rgb(182, 223, 255)
+}
+
 .webTitle {
   margin-top: 10px;
   float: right;
@@ -46,8 +59,16 @@
   margin-right: 20px;
   font-family: titleFont;
   font-size: 40px;
+  text-shadow: #FA4616 3px 1px;
 }
 
+/* Home page */
+.noEvents {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  margin-top: 30%;
+}
 
 body {
   margin: 0;
@@ -80,7 +101,6 @@ body {
 }
 
 .event .title {
-  flex: 2%;
   background-color: #0021A5;
   display: grid;
   place-content: center;
@@ -105,16 +125,18 @@ body {
   font-size: 20px;
 }
 
-.createPostPage {
+/* create event */
+.createEventForm {
   font-family: Arial, Helvetica, sans-serif;
   width: 100vw;
   height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-wrap: break-word;
+  text-wrap: wrap;
 }
 
-/* Below is for the create new event page */
 .form {
   display: flex;
   flex-direction: column;
@@ -128,15 +150,34 @@ body {
 }
 
 .form #inCreateEvent {
-  height: 100px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px solid #FA4616;
+  border: 1px solid #FA4616;
   border-radius: 5px;
   padding-left: 10px;
   font-size: 15px;
   overflow-wrap: break-word;
-  font-family:'Courier New', Courier, monospace
+  text-wrap: wrap;
+  font-family:'Courier New', Courier, monospace;
+}
+
+.addTitle {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.addDescription {
+  height: 175px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  inline-size: 487px;
+  overflow-wrap: break-word;
+  text-wrap: wrap;
+}
+
+.addAuthor {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .form button {
@@ -145,8 +186,9 @@ body {
   border: none;
   background-color: #0021A5;
   border-radius: 5px;
-  color: white;
-  font-family:'Courier New', Courier, monospace
+  color: #ffffff;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 15px
 }
 
 .form button:hover {
@@ -156,4 +198,114 @@ body {
 
 span {
   color: #FA4616;
+}
+
+/* expanded event page */
+.eventPage {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.left {
+  flex: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+  height: calc(100vh - 100px);
+}
+
+.right {
+  flex: 50%;
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 100px);
+  
+}
+
+.eventInfo{
+  background-color: #4965d7;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 8px;
+  font-family:'Courier New', Courier, monospace
+}
+
+#individual {
+  padding-top: 30px;
+  height: calc(100vh - 150px);
+  width: 600px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#individual .title {
+  font-size: 30px;
+  color: white;
+}
+
+#individual .footer {
+  font-size: 20px;
+  color: white;
+}
+
+#individual .body {
+  font-size: 20px;
+  height: 400px;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: white;
+  color: #0021A5;
+}
+
+.form #inCreateAccount {
+  border: 1px solid #FA4616;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 15px;
+  overflow-wrap: break-word;
+  text-wrap: wrap;
+  font-family:'Courier New', Courier, monospace;
+}
+
+.button #loginsignup {
+  background-color: rgb(89, 133, 255)
+}
+
+.addUsername {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.addPassword {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.addEmail {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.loginLink {
+  text-align: center;
+  vertical-align: middle;
+  vertical-align: center;
+  margin-top: 20px;
+  color: #000000;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 15px
+}
+
+.loginLink:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

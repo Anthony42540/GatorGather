@@ -27,37 +27,31 @@ function CreateEvent() {
     <div className="createEventForm"> 
         <Formik initialValues={ initVal } onSubmit={ onSubmit } validationSchema={ valSchema }> 
             <Form className="form">
-                <label>
-                    Event Title:
-                </label>
+                <label>add your event</label>
                 <ErrorMessage name="title" component="span"/>
                 <Field  
                     id = "inCreateEvent" 
                     name="title" 
-                    placeholder="Ex. Tailgate!" 
+                    placeholder="title"
+                    className="addTitle" 
                 />
-
-                <label>
-                    Event Description:
-                </label>
                 <ErrorMessage name="eventDescription" component="span"/>
-                <Field  
+                <Field
                     id = "inCreateEvent" 
                     name="eventDescription" 
-                    placeholder="Ex. 6 PM near NEB!" 
+                    placeholder="event description" 
+                    className="addDescription" 
+                    component="textarea"
                 />
-
-                <label>
-                    Author:
-                </label>
                 <ErrorMessage name="author" component="span"/>
                 <Field  
                     id = "inCreateEvent" 
                     name="author" 
-                    placeholder="Ex. Jane Doe." 
+                    placeholder="author" 
+                    className="addAuthor" 
                 />
 
-                <button type="submit"> Create New Event</button>
+                <button type="submit"> create new event</button>
             </Form>
         </Formik>
     </div>
