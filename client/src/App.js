@@ -14,8 +14,9 @@ function App() {
           <span className="tabs">
             <Link to="/">home</Link>
             <Link to="/createEvent">new event</Link>
-            <Link to="/login">login</Link>
-            <Link to="/signup">sign up</Link>
+          </span>
+          <span className="signupTab">
+            <Link to="/signup">sign up or login</Link>
           </span>
           <span className="webTitle">GatorGather</span>
         </div>
@@ -23,8 +24,8 @@ function App() {
           <Route path="/" element={ <Home/> } />
           <Route path="/createEvent" element={ <CreateEvent/> } />
           <Route path="/event/:id" element={ <Event/> } />
-          <Route path="/login" element={ <Login/> } />
           <Route path="/signup" element={ <Signup/> } />
+          <Route path="/login" element={ <Login/> } />
         </Routes>
       </Router>
     </div>

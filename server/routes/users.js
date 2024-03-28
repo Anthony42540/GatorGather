@@ -47,4 +47,14 @@ router.post("/", async (request, response) => {
     }
 });
 
+// Check if username exists in database
+router.get('/:username', async (req, res) => {
+    const username = req.params.username;
+    const userExists = await users.findOne({ where: {username: username} });
+    if (userExists) {
+        res.json({error: "This username is taken"});
+    }
+    res.json("Username is unique.");
+});
+
 module.exports = router;
