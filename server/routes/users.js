@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 //create route for login
 router.post("/login", async (request, response) => {
     const { username, password } = request.body
-    const user = await users.fineOne({ where: { username: username } });
+    const user = await users.findOne({ where: { username: username } });
 
     if (!user) {
         return response.json({error: "No user matching your input."})
