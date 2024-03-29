@@ -20,6 +20,10 @@ const Carousel = ({ listOfEvents, displayCount }) => {
     const renderItems = () => {
         let itemsToShow = [];
         if(listOfEvents.length === 0) return "";
+        else if (listOfEvents.length < displayCount){
+            displayCount = listOfEvents.length;
+        }
+
         for (let i = 0; i < displayCount; i++) {
             let index = (currentIndex + i) % listOfEvents.length; // Wrap around if index exceeds items length
             let item = listOfEvents[index];
