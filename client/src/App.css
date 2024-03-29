@@ -38,6 +38,19 @@
   background: white;
 }
 
+.signupTab a {
+  display: inline-block;
+  margin-top: 22px;
+  margin-left: 20px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.signupTab a:hover {
+  color: rgb(182, 223, 255)
+}
+
 .webTitle {
   margin-top: 10px;
   float: right;
@@ -46,6 +59,7 @@
   margin-right: 20px;
   font-family: titleFont;
   font-size: 40px;
+  text-shadow: #FA4616 3px 1px;
 }
 
 /* Home page */
@@ -259,6 +273,10 @@ span {
   font-family:'Courier New', Courier, monospace;
 }
 
+.button #loginsignup {
+  background-color: rgb(89, 133, 255)
+}
+
 .addUsername {
   height: 30px;
   margin-top: 10px;
@@ -275,4 +293,19 @@ span {
   height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.loginLink {
+  text-align: center;
+  vertical-align: middle;
+  vertical-align: center;
+  margin-top: 20px;
+  color: #000000;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 15px
+}
+
+.loginLink:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

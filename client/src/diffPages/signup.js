@@ -11,6 +11,7 @@ function Signup(){
     const initVal = {
         username: "",
         password: "",
+        email: "",
     };
 
     const onSubmit = (data) => {
@@ -18,7 +19,27 @@ function Signup(){
     };
 
     const valSchema = yup.object().shape({
-        username: yup.string().min(1).max(100).required("username required"),
+        username: yup.string()
+            .min(1)
+            .max(100)
+            .required("username required")
+            /*
+            .test('Unique username', 'Username is taken',
+                function(value){
+                    return new Promise((resolve, reject) => {
+                        axios.get(`http://localhost:5000/authentication/${value}`)
+                            .then((res) => {
+                                resolve(true)
+                            })
+                            .catch((error) => {
+                                if (error.response.data.content === "This username is taken") {
+                                    resolve(false);
+                                }
+                            })
+                    })
+                }
+            )*/,
+            
         password: yup.string().min(8).required("password required"),
         email: yup.string().email().required("valid email address required"),
     })
@@ -39,6 +60,7 @@ function Signup(){
                 <Field  
                     id = "inCreateAccount" 
                     name="password" 
+                    type="password"
                     placeholder="create password" 
                     className="addPassword" 
                 />
@@ -50,6 +72,10 @@ function Signup(){
                     className="addEmail" 
                 />
                 <button type="submit">create account</button>
+                <div className="loginLink" onClick={() => {navigate("/login")}}>
+                    or login instead
+                </div>
+                
             </Form>
         </Formik>
     </div>
