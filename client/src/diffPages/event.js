@@ -38,8 +38,8 @@ function Event() {
           </div>
           <div className='right'>
             <div className="addCommentContainer"> 
-              <input type="text" placeholder="Type your comment here..." autoComplete="off" value={newComment} onChange={(event) => {setNewComment(event.target.value)}} />
-              <button onClick={addComment}> Submit Comment </button>
+              <textarea type="text" placeholder="Type your comment here..." autoComplete="off" value={newComment} onChange={(event) => {setNewComment(event.target.value)}} />
+              <button onClick={addComment}> <span class="arrowColor">&#8640;</span> </button>
             </div>
             <div className="commentsList">
               {comments.map((comment, key) => {
