@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { users } = require("../models");
 const bcrypt = require("bcrypt");
+const {sign} = require('jsonwebtoken');
 
 //create route for login
 router.post("/login", async (request, response) => {
@@ -9,7 +10,7 @@ router.post("/login", async (request, response) => {
     const user = await users.findOne({ where: { username: username } });
 
     if (!user) {
-        return response.json({error: "No user matching your input."})
+        return response.json({error: "User does not exists."})
     }
     else{
         bcrypt.compare(password, user.password).then((found) => {
@@ -17,7 +18,11 @@ router.post("/login", async (request, response) => {
                 return response.json({error: "Password is not correct."})
             }
             else{
-                return response.json("Login successful.")
+                const token = sign(
+                    {username: user.username, id: user.id}, 
+                    "secret"
+                );
+                response.json(token);
             }
         });
     }
@@ -33,7 +38,7 @@ router.post("/", async (request, response) => {
         return response.json({error: "This username is taken."})
     }
     else if (emailaddress) {
-        return response.json({error: "This email is taken."})
+        return response.json({error: "This email is already associated with an account."})
     }
     else{
         bcrypt.hash(password, 15).then((hash) => {
@@ -45,16 +50,6 @@ router.post("/", async (request, response) => {
             return response.json("Account successfully created.")
         });
     }
-});
-
-// Check if username exists in database
-router.get('/:username', async (req, res) => {
-    const username = req.params.username;
-    const userExists = await users.findOne({ where: {username: username} });
-    if (userExists) {
-        res.json({error: "This username is taken"});
-    }
-    res.json("Username is unique.");
 });
 
 module.exports = router;

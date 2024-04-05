@@ -12,11 +12,17 @@ function Login(){
     const login = () => {
         const data = {username: username, password: password};
         axios.post("http://localhost:5000/authentication/login", data).then((response) => {
-            console.log(response.data);
-            navigate(`/`);});
+            if(response.data.error) {
+                alert(response.data.error)
+            }
+            else {
+                sessionStorage.setitem("token", response.data)
+                navigate(`/`);
+            }
+        });
     };
 
-    return (
+    return (    
     <div className="createAccountForm"> 
         <div className="form">
             <label>login</label>
