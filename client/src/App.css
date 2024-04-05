@@ -332,15 +332,16 @@ button {
   height: 50px;
   border-radius: 8px;
   border: none;
+  font-family:'Courier New', Courier, monospace
 }
 
 .addCommentContainer button {
-  background-color: dodgerblue;
+  background-color: rgb(89, 133, 255);
   color: white;
 }
 
 .addCommentContainer input {
-  border: 2px solid dodgerblue;
+  border: 2px solid rgb(89, 133, 255);
 }
 
 .right .commentsList {
@@ -358,4 +359,5 @@ button {
   border: 1px solid lightgray;
   border-radius: 5px;
   margin-top: 20px;
+  font-family:'Courier New', Courier, monospace
 }
