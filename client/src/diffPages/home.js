@@ -22,7 +22,7 @@ function Home() {
       <div>
         {listOfEvents.map((value, key) => {
             return (
-              <div className="event" onClick={() => {navigate(`/event/${value.id}`)}}> 
+              <div key={key} className="event" onClick={() => {navigate(`/event/${value.id}`)}}> 
                 <div className="title">{value.title}</div>
                 <div className="body">{value.eventDescription}</div>
                 <div className="footer">posted by: {value.author}</div>

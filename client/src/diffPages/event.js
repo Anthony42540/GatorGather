@@ -5,13 +5,27 @@ import axios from 'axios';
 function Event() {
     let{ id } = useParams();
     const [eventObject, setEventObject] = useState({});
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState("")
 
     //fetch data based on ID using axios
     useEffect(() => {
       axios.get(`http://localhost:5000/events/byId/${id}`).then((response) => {
         setEventObject(response.data);
       });
-    });
+
+      axios.get(`http://localhost:5000/comments/${id}`).then((response) => {
+        setComments(response.data);
+      });
+    }, []);
+
+    const addComment = () => {
+      axios.post("http://localhost:5000/comments/", {commentBody: newComment, EventId: id, }).then((response) => {
+        const commentToAdd = {commentBody: newComment};
+        setComments([...comments, commentToAdd]);
+        setNewComment("");
+      });
+    }
 
     return (
         <div className='eventPage'>
@@ -23,7 +37,15 @@ function Event() {
             </div>
           </div>
           <div className='right'>
-            the right
+            <div className="addCommentContainer"> 
+              <input type="text" placeholder="Type your comment here..." autoComplete="off" value={newComment} onChange={(event) => {setNewComment(event.target.value)}} />
+              <button onClick={addComment}> Submit Comment </button>
+            </div>
+            <div className="commentsList">
+              {comments.map((comment, key) => {
+                return <div key={key} className="comment"> {comment.commentBody} </div>
+              })}
+            </div>
           </div>
         </div>
     )
