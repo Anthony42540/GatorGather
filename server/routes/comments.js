@@ -5,7 +5,7 @@ const { Comments } = require("../models");
 // retrieves all comments for a specific event
 router.get('/:eventid', async (req, res) => {
     const eventid = req.params.eventid;
-    const comments = await Comments.findAll({ where: {EventId: postid} });
+    const comments = await Comments.findAll({ where: {EventId: eventid} });
     res.json(comments);
 });
 
