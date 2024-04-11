@@ -37,6 +37,44 @@
   color: #0021A5;
   background: white;
 }
+.filterbar{
+  background-color: #f78000;
+  display: inline-flex;
+  border-bottom: black;
+  border-bottom-color: black;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  align-items: center;
+  width: 90vw;
+  height: 50px;
+}
+
+.filtertabs {
+  display: flex;
+  align-items: center;
+  width: 90vw;
+  height: 50px;
+  justify-content: center;
+}
+
+.filtertabs button{
+  display: flex;
+  margin-left: 20px;
+  background-color: deepskyblue;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid white;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.filtertabs button:hover {
+  color: #0021A5;
+  background: white;
+  cursor: pointer;
+}
 
 .signupTab a {
   display: inline-block;
@@ -82,6 +120,57 @@ body {
   overflow: hidden;
 }
 
+.events-grid {
+  justify-content: center;
+  align-self: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /*grid-template-columns: ;*/
+  gap: 20px; /* Adjust the gap between grid items */
+  padding: 20px; /* Padding around the grid */
+  width: 40vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.small-event {
+  width: 250px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 5px solid #0021A5;
+  font-family: 'Courier New', Courier, monospace;
+  border-radius: 10px;
+}
+
+.small-event .title {
+  flex: 2%;
+  background-color: #0021A5;
+  display: grid;
+  place-content: center;
+  color: white;
+  font-size: 20px;
+}
+
+.small-event .body {
+  flex: 65%;
+  display: grid;
+  place-content: center;
+  font-size: 15px;
+}
+
+.small-event .footer {
+  flex: 1%;
+  display: flex;
+  align-items: center;
+  place-content: center;
+  background-color: #0021A5;
+  color: white;
+  font-size: 15px;
+}
+
 .event {
   width: 400px;
   height: 350px;
@@ -94,7 +183,7 @@ body {
   border-radius: 10px; 
 }
 
-.event:hover {
+.event:hover, .small-event:hover {
   box-shadow: #000000 0px 0px 10px 0px;
   cursor: pointer;
   outline: 5px solid rgb(101, 129, 255)
@@ -123,6 +212,31 @@ body {
   background-color: #0021A5;
   color: white;
   font-size: 20px;
+}
+
+.carousel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  height: 350px;
+
+}
+.carousel button {
+  width: 60px; /* Set the width */
+  height: 60px; /* Ensure height is the same as the width */
+  border-radius: 50%; /* This makes it a circle */
+  border: 2px solid #3498db; /* Optional: Adds a border */
+  color: white; /* Text color */
+  background-color: #0021A5; /* Button color */
+  font-size: 40px; /* Optional: Adjust font size */
+  text-align: center; /* Aligns the text to the center */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+.carousel button:hover {
+  background-color: white;
+  color:#0021A5;
 }
 
 /* create event */

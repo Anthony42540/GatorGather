@@ -11,7 +11,7 @@ function Event() {
       axios.get(`http://localhost:5000/events/byId/${id}`).then((response) => {
         setEventObject(response.data);
       });
-    });
+    },[]);
 
     return (
         <div className='eventPage'>
