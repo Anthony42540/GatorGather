@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import {Link, useNavigate} from "react-router-dom";
 import Carousel from "./carousel";
 import EventGrid from "./eventGrid";
+import {categoryTagOptions} from "./categoryTags";
 
 function Home() {
     const [listOfEvents, setListOfEvents] = useState([]);
+    const [type, setType] = useState("all");
     let navigate = useNavigate();
     let mockEvents = [
         {"id": 1, "author": "auth1", "title": "t1", "eventDescription": "im one 😊"},
@@ -28,31 +30,28 @@ function Home() {
         });
       }, []);
 
+
     if (Object.keys(listOfEvents).length === 0) {
         return (
           <div className="noEvents">Oops, nothings going on right now. Check back later for upcoming events!</div>
         )
     }
+
     return (
-    // <Carousel items={listOfEvents} displayCount={3}>
-    //
-    // </Carousel>
       <div>
           <Carousel listOfEvents={listOfEvents} displayCount={3}/>
 
           <div className="filterbar">
               <div className="filtertabs">
-                  <button>All</button>
-                  <button>Free</button>
-                  <button>Tailgate</button>
-                  <button>Party</button>
-                  <button>UF Club</button>
-                  <button>Sports</button>
-                  <button>Today</button>
-                  <button>This Weekend</button>
+                  <button style={(type === "all") ? {textDecoration: "underline"} : {}} onClick={() => setType("all")}>All</button>
+                  {categoryTagOptions.map(button => (
+                      <button style={(type === button.value) ? {textDecoration: "underline"} : {}} onClick={() => setType(button.value)}>
+                          {button.label}
+                      </button>
+                  ))}
               </div>
           </div>
-          <EventGrid listOfEvents={listOfEvents}/>
+          <EventGrid listOfEvents={listOfEvents} type={type}/>
 
 
         {/*{mockEvents.map((value, key) => {*/}
