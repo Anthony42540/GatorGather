@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Comments } = require("../models");
+const { validateTok } = require("../middleware/MWauth");
 
 // retrieves all comments for a specific event
 router.get('/:eventid', async (req, res) => {
@@ -10,7 +11,7 @@ router.get('/:eventid', async (req, res) => {
 });
 
 // posts a comment to an event
-router.post("/", async (req, res) => {
+router.post("/", validateTok, async (req, res) => {
     const comment = req.body
     await Comments.create(comment)
     res.json(comment)

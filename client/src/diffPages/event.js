@@ -20,10 +20,20 @@ function Event() {
     }, []);
 
     const addComment = () => {
-      axios.post("http://localhost:5000/comments/", {commentBody: newComment, EventId: id, }).then((response) => {
-        const commentToAdd = {commentBody: newComment};
-        setComments([...comments, commentToAdd]);
-        setNewComment("");
+      axios.post("http://localhost:5000/comments/", 
+        {commentBody: newComment, EventId: id,},
+        {headers: {
+          accessToken: sessionStorage.getItem("token")
+        }}
+      ).then((response) => {
+        if(response.data.error){
+          alert(response.data.error);
+        }
+        else{
+          const commentToAdd = {commentBody: newComment};
+          setComments([...comments, commentToAdd]);
+          setNewComment("");
+        }
       });
     }
 

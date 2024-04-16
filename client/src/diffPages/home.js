@@ -1,15 +1,15 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {Link, useNavigate} from "react-router-dom";
 import Carousel from "./carousel";
 import EventGrid from "./eventGrid";
-import {categoryTagOptions} from "./categoryTags";
+import { categoryTagOptions } from "./categoryTags";
 
 function Home() {
     const [listOfEvents, setListOfEvents] = useState([]);
     const [type, setType] = useState("all");
-    let navigate = useNavigate();
+    
+    /*
     let mockEvents = [
         {"id": 1, "author": "auth1", "title": "t1", "eventDescription": "im one 😊"},
         {"id": 2, "author": "auth2", "title": "t2", "eventDescription": "yo 👋"},
@@ -22,6 +22,7 @@ function Home() {
         {"id": 9, "author": "auth9", "title": "t9", "eventDescription": "get ready for an unforgettable experience 💫"},
         {"id": 10, "author": "auth10", "title": "t10", "eventDescription": "come and be part of something special ✨"}
     ];
+    */
 
 
     useEffect(() => {

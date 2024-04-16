@@ -13,10 +13,10 @@ function Login(){
         const data = {username: username, password: password};
         axios.post("http://localhost:5000/authentication/login", data).then((response) => {
             if(response.data.error) {
-                alert(response.data.error)
+                alert("response.data.error")
             }
             else {
-                sessionStorage.setitem("token", response.data)
+                sessionStorage.setItem("token", response.data)
                 navigate(`/`);
             }
         });
