@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Events } = require("../models");
+const { validateTok } = require("../middleware/MWauth");
 
 // retrieves data from database
 router.get("/", async (req, res) => {

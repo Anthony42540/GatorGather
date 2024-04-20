@@ -5,13 +5,37 @@ import axios from 'axios';
 function Event() {
     let{ id } = useParams();
     const [eventObject, setEventObject] = useState({});
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState("")
 
     //fetch data based on ID using axios
     useEffect(() => {
       axios.get(`http://localhost:5000/events/byId/${id}`).then((response) => {
         setEventObject(response.data);
       });
-    },[]);
+
+      axios.get(`http://localhost:5000/comments/${id}`).then((response) => {
+        setComments(response.data);
+      });
+    }, []);
+
+    const addComment = () => {
+      axios.post("http://localhost:5000/comments/", 
+        {commentBody: newComment, EventId: id,},
+        {headers: {
+          accessToken: localStorage.getItem("token")
+        }}
+      ).then((response) => {
+        if(response.data.error){
+          alert(response.data.error);
+        }
+        else{
+          const commentToAdd = {commentBody: newComment, username: response.data.username};
+          setComments([...comments, commentToAdd]);
+          setNewComment("");
+        }
+      });
+    }
 
     return (
         <div className='eventPage'>
@@ -23,7 +47,23 @@ function Event() {
             </div>
           </div>
           <div className='right'>
-            the right
+            <div className="addCommentContainer"> 
+              <textarea type="text" placeholder="Type your comment here..." autoComplete="off" value={newComment} onChange={(event) => {setNewComment(event.target.value)}} />
+              <button onClick={addComment}> <span class="arrowColor">&#8640;</span> </button>
+            </div>
+            <div className="commentsList">
+              {comments.map((comment, key) => {
+                return (
+                  <div key={key} className="comment"> 
+                    <label style={{color: 'blue'}}>
+                      @{comment.username}:
+                    </label>
+                    <div> </div>
+                    {comment.commentBody}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
     )

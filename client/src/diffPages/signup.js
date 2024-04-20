@@ -15,7 +15,14 @@ function Signup(){
     };
 
     const onSubmit = (data) => {
-        axios.post("http://localhost:5000/authentication", data).then((response) => {navigate(`/`);});
+        axios.post("http://localhost:5000/authentication", data).then((response) => {
+            if(response.data.error) {
+                alert(response.data.error)
+            }
+            else {
+                navigate(`/`)
+            }
+        });
     };
 
     const valSchema = yup.object().shape({
@@ -23,23 +30,7 @@ function Signup(){
             .min(1)
             .max(100)
             .required("username required")
-            /*
-            .test('Unique username', 'Username is taken',
-                function(value){
-                    return new Promise((resolve, reject) => {
-                        axios.get(`http://localhost:5000/authentication/${value}`)
-                            .then((res) => {
-                                resolve(true)
-                            })
-                            .catch((error) => {
-                                if (error.response.data.content === "This username is taken") {
-                                    resolve(false);
-                                }
-                            })
-                    })
-                }
-            )*/,
-            
+            .matches(/^[a-zA-Z0-9_\.]+$/, "username must only consist of alphanumeric characters, underscores, and periods"),
         password: yup.string().min(8).required("password required"),
         email: yup.string().email().required("valid email address required"),
     })

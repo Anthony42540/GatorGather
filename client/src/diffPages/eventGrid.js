@@ -1,8 +1,7 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const EventGrid = ({ listOfEvents, type}) => {
-    const [] = useState(0);
+
     let navigate = useNavigate();
     return (
     <div className="events-grid">{listOfEvents.filter(event=>event.categoryTag?.includes(type) || type==="all").map((value, index) => {
