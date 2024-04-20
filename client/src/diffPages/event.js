@@ -23,14 +23,14 @@ function Event() {
       axios.post("http://localhost:5000/comments/", 
         {commentBody: newComment, EventId: id,},
         {headers: {
-          accessToken: sessionStorage.getItem("token")
+          accessToken: localStorage.getItem("token")
         }}
       ).then((response) => {
         if(response.data.error){
           alert(response.data.error);
         }
         else{
-          const commentToAdd = {commentBody: newComment};
+          const commentToAdd = {commentBody: newComment, username: response.data.username};
           setComments([...comments, commentToAdd]);
           setNewComment("");
         }
@@ -53,7 +53,15 @@ function Event() {
             </div>
             <div className="commentsList">
               {comments.map((comment, key) => {
-                return <div key={key} className="comment"> {comment.commentBody} </div>
+                return (
+                  <div key={key} className="comment"> 
+                    <label style={{color: 'blue'}}>
+                      @{comment.username}:
+                    </label>
+                    <div> </div>
+                    {comment.commentBody}
+                  </div>
+                );
               })}
             </div>
           </div>

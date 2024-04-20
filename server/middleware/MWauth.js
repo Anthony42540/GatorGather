@@ -7,6 +7,7 @@ const validateTok = (request, response, next) => {
 
     try{
         const validToken = verify(accessToken, "secret");
+        request.user = validToken;
         if(validToken){
             return next();
         }
