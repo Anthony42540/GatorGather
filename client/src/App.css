@@ -141,6 +141,7 @@ h1{
   justify-content: center;
   width: 90vw;
   height: 280px;
+  margin-bottom: 20px;
 }
 
 .event {
@@ -193,17 +194,15 @@ h1{
 .filterbar{
   display: inline-flex;
   justify-content: inline;
-  margin-bottom: 10px;
-  margin-top: 30px;
   align-items: center;
   width: 100vw;
   height: 50px;
-  border: 1px solid rgb(185, 185, 185);
+  border: 0.5px solid rgb(255, 255, 255);
 }
 
 .prompt{
   margin-left: 40px;
-  color: rgb(117, 29, 0);
+  color: rgb(48, 42, 122);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
 }
@@ -226,6 +225,20 @@ body {
   overflow: hidden;
 }
 
+.grid-area {
+  width: 100vw;
+  background-image: linear-gradient(to bottom right, #dfe6ff, #0021A5);
+}
+
+.empty-grid {
+  justify-content: center;
+  align-content: center;
+  display: grid;
+  height: 30vh;
+  font-family:'Courier New', Courier, monospace;
+  color: white;
+}
+
 .events-grid {
   justify-content: center;
   align-self: center;
@@ -246,6 +259,7 @@ body {
   margin-bottom: 20px;
   border: 1px solid #0021A5;
   font-family: 'Courier New', Courier, monospace;
+  background-color: white;
 }
 
 .grid-event .title {

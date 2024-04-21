@@ -56,21 +56,25 @@ function Home() {
     return (
       <div>
           <Carousel listOfEvents={listOfEvents} displayCount={displayCount} className="carousel"/>
-
-          <div className="filterbar">
-              <span className="prompt">I'm looking for</span>
-              <Select
-                name="type"
-                className="filterDropDown"
-                onChange={handleTypeChange}
-                options={categoryTagOptions}
-                isClearable={true}
-                value={categoryTagOptions.find(option => option.label === type)}
-              >
-              </Select>
+          <div className="grid-area">
+            <div className="filterbar">
+                <span className="prompt">I'm looking for</span>
+                <Select
+                  name="type"
+                  className="filterDropDown"
+                  onChange={handleTypeChange}
+                  options={categoryTagOptions}
+                  isClearable={true}
+                  value={categoryTagOptions.find(option => option.label === type)}
+                >
+                </Select>
+            </div>
+            <div >
+              <EventGrid listOfEvents={listOfEvents} type={type}/>
+            </div>
           </div>
-          <EventGrid listOfEvents={listOfEvents} type={type}/>
-
+          
+  
       </div>
     )
 }
