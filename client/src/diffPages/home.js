@@ -18,7 +18,7 @@ function Home() {
 
     if (Object.keys(listOfEvents).length === 0) {
         return (
-          <div className="noEvents">Oops, nothings going on right now. Check back later for upcoming events!</div>
+          <div className="noEvents">Oops, nothing's going on right now. Check back later for upcoming events!</div>
         )
     }
 

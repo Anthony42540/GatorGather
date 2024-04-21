@@ -479,17 +479,18 @@ button {
   display: inline-block;
   vertical-align: bottom;
   width: 50px;
-  height: 50px;
+  height: 115px;
   background-color: rgb(89, 133, 255);
   color: white;
 }
 
 .addCommentContainer textarea {
-  width: 320px;
-  height: 80px;
+  width: 525px;
+  height: 100px;
   margin-right: 20px;
   border: 2px solid rgb(89, 133, 255);
   text-wrap: "soft";
+  resize: none;
 }
 
 .right .commentsList {
@@ -513,4 +514,9 @@ button {
 .arrowColor {
   color:#ffffff;
   font-size: 35px;
+}
+
+.flex-box-2 {
+  display: flex;
+  justify-content: flex-end;
 }

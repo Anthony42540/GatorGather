@@ -31,4 +31,16 @@ router.post("/", validateTok, async (req, res) => {
     res.json(event);
 });
 
+router.delete("/:eventId", validateTok, async (req, res) => {
+    const eventId = req.params.eventId;
+
+    await Events.destroy({
+        where: {
+            id: eventId,
+        },
+    });
+
+    res.json("DELETED SUCCESSFULLY")
+})
+
 module.exports = router;

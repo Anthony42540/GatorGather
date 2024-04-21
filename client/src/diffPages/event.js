@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react'
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { context } from "../assists/context";
 
 function Event() {
     let{ id } = useParams();
     const [eventObject, setEventObject] = useState({});
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("")
+    const { authState } = useContext(context);
+    const navigate = useNavigate();
 
     //fetch data based on ID using axios
     useEffect(() => {
@@ -37,12 +40,23 @@ function Event() {
       });
     }
 
+    const deleteEvent = (id) => {
+      axios.delete(`http://localhost:5000/events/${id}`, {
+        headers: { accessToken: localStorage.getItem("token") },
+      })
+      .then(() => {
+        navigate('/');
+      });
+    }
     return (
         <div className='eventPage'>
           <div className='left'>
             <div className='eventInfo' id="individual">
               <div className="title">{eventObject.title}</div>
               <div className="footer">@{eventObject.username} </div>
+              <div class="flex-box-2">
+                {authState.username === eventObject.username && <button onClick={() => {deleteEvent(eventObject.id)}}>Delete Event</button>}
+              </div>
               <div className="body">{eventObject.eventDescription}</div>
             </div>
           </div>
