@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 
 const Carousel = ({ listOfEvents, displayCount }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,7 +21,9 @@ const Carousel = ({ listOfEvents, displayCount }) => {
     // Render items based on currentIndex and displayCount
     const renderItems = () => {
         let itemsToShow = [];
-        if(listOfEvents.length === 0) return "";
+        if(listOfEvents.length === 0){
+            return "";
+        }
         else if (listOfEvents.length < displayCount){
             displayCount = listOfEvents.length;
         }
@@ -31,7 +35,7 @@ const Carousel = ({ listOfEvents, displayCount }) => {
                 <div key={index} className="event" onClick={() => {navigate(`/event/${item.id}`)}}>
                     <div className="title">{item.title}</div>
                     <div className="body">{item.eventDescription}</div>
-                    <div className="footer">posted by: {item.author}</div>
+                    <div className="footer">posted by: {item.username}</div>
                 </div>
             );
         }
@@ -40,10 +44,13 @@ const Carousel = ({ listOfEvents, displayCount }) => {
 
     return (
         <div className="carousel">
-            <button onClick={goToPrevSlide}>⬅</button>
-            {/*<div className="carousel-content">{renderItems()}</div>*/}
+            <button onClick={goToPrevSlide}>
+                <FontAwesomeIcon icon={faCaretLeft} />
+            </button>
             {renderItems()}
-            <button onClick={goToNextSlide}>➡</button>
+            <button onClick={goToNextSlide}>
+                <FontAwesomeIcon icon={faCaretRight} />
+            </button>
         </div>
     );
 };
