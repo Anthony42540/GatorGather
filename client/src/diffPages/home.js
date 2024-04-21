@@ -9,7 +9,7 @@ import { categoryTagOptions } from "./categoryTags";
 function Home() {
     const [listOfEvents, setListOfEvents] = useState([]);
     const [type, setType] = useState("all");
-    const [displayCount, setDisplayCount] = useState(3);
+    const [displayCount, setDisplayCount] = useState();
 
     useEffect(() => {
         axios.get("http://localhost:5000/events").then((response) => {
@@ -23,10 +23,26 @@ function Home() {
       }, []);
 
     useEffect(() => {
-      const eventWidth = 250;
-      const screenWidth = window.innerWidth;
-      const newDisplayCount = Math.floor((screenWidth - 40) / eventWidth);
-      setDisplayCount(newDisplayCount);
+      
+      const calcDisplayCount = () => {
+        const eventWidth = 300;
+        const screenWidth = window.innerWidth;
+        return Math.floor((screenWidth - 100) / eventWidth);
+      };
+
+      const initialDisplayCount = calcDisplayCount();
+      setDisplayCount(initialDisplayCount);
+
+      const handleResize = () => {
+          const newDisplayCount = calcDisplayCount();
+          setDisplayCount(newDisplayCount);
+      };
+    
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+          window.removeEventListener("resize", handleResize);
+      };
     }, []);
 
     const handleTypeChange = (filter) => {
