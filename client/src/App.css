@@ -432,12 +432,14 @@ span {
   height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding-left: 10px
 }
 
 .addPassword {
   height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding-left: 10px
 }
 
 .addEmail {
@@ -460,6 +462,8 @@ span {
   cursor: pointer;
   text-decoration: underline;
 }
+
+/* comments component */
 
 .right .addCommentContainer {
   flex: 20%;
