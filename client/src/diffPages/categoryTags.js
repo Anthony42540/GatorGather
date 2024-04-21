@@ -6,4 +6,11 @@ export const categoryTagOptions = [
     { value: 'sports', label: 'sports' },
     { value: 'nightclub', label: 'night club' },
     { value: 'GMB', label: 'GBM' },
+    { value: 'gameDay', label: 'game day' },
+    { value: 'greek', label: 'greek' },
+    { value: 'festival', label: 'festival' },
+    { value: 'market', label: 'market' },
+    { value: 'groupFitness', label: 'group fitness' },
+    { value: 'workshop', label: 'workshop' },
+    { value: 'family', label: 'family friendly' },
 ];

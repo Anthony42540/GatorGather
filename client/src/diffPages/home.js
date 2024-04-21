@@ -9,6 +9,7 @@ import { categoryTagOptions } from "./categoryTags";
 function Home() {
     const [listOfEvents, setListOfEvents] = useState([]);
     const [type, setType] = useState("all");
+    const [displayCount, setDisplayCount] = useState(3);
 
     useEffect(() => {
         axios.get("http://localhost:5000/events").then((response) => {
@@ -21,22 +22,30 @@ function Home() {
         });
       }, []);
 
+    useEffect(() => {
+      const eventWidth = 250;
+      const screenWidth = window.innerWidth;
+      const newDisplayCount = Math.floor((screenWidth - 40) / eventWidth);
+      setDisplayCount(newDisplayCount);
+    }, []);
+
     const handleTypeChange = (filter) => {
       if (filter === null) {
           setType("all");
       } else {
           setType(filter.label);
       }
-      
     };
 
     return (
       <div>
-          <Carousel listOfEvents={listOfEvents} displayCount={3}/>
+          <Carousel listOfEvents={listOfEvents} displayCount={displayCount} className="carousel"/>
 
           <div className="filterbar">
+              <span className="prompt">I'm looking for</span>
               <Select
                 name="type"
+                className="filterDropDown"
                 onChange={handleTypeChange}
                 options={categoryTagOptions}
                 isClearable={true}

@@ -35,7 +35,7 @@ const Carousel = ({ listOfEvents, displayCount }) => {
                 <div key={index} className="event" onClick={() => {navigate(`/event/${item.id}`)}}>
                     <div className="title">{item.title}</div>
                     <div className="body">{item.eventDescription}</div>
-                    <div className="footer">posted by: {item.username}</div>
+                    <div className="footer">{item.username}</div>
                 </div>
             );
         }
@@ -43,14 +43,19 @@ const Carousel = ({ listOfEvents, displayCount }) => {
     };
 
     return (
-        <div className="carousel">
-            <button onClick={goToPrevSlide}>
-                <FontAwesomeIcon icon={faCaretLeft} />
-            </button>
-            {renderItems()}
-            <button onClick={goToNextSlide}>
-                <FontAwesomeIcon icon={faCaretRight} />
-            </button>
+        <div>
+            <div className="carouselButtons">
+                <h1>popular events</h1>
+                <button onClick={goToPrevSlide}>
+                    <FontAwesomeIcon icon={faCaretLeft} />
+                </button>
+                <button onClick={goToNextSlide}>
+                    <FontAwesomeIcon icon={faCaretRight} />
+                </button>
+            </div>
+            <div className="carousel">
+                {renderItems()}
+            </div>
         </div>
     );
 };
