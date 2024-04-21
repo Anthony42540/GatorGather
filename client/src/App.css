@@ -102,10 +102,7 @@
 .filterbar{
   background-color: #f78000;
   display: inline-flex;
-  border-bottom: black;
-  border-bottom-color: black;
   justify-content: center;
-  font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 30px;
   margin-top: 30px;
   align-items: center;
@@ -119,22 +116,24 @@
   width: 90vw;
   height: 50px;
   justify-content: center;
+
 }
 
 .filtertabs button{
   display: flex;
   margin-left: 20px;
-  background-color: deepskyblue;
+  background-color: #f78000;
   text-align: center;
-  text-decoration: none;
-  border: 2px solid white;
-  padding: 5px;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  border: 2px solid #f78000;
   border-radius: 3px;
+  padding: 5px;
 }
 
 .filtertabs button:hover {
-  color: #0021A5;
-  background: white;
+  border: 2px solid white;
   cursor: pointer;
 }
 
@@ -163,44 +162,6 @@ body {
   margin-right: auto;
 }
 
-.small-event {
-  width: 250px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 5px solid #0021A5;
-  font-family: 'Courier New', Courier, monospace;
-  border-radius: 10px;
-}
-
-.small-event .title {
-  flex: 2%;
-  background-color: #0021A5;
-  display: grid;
-  place-content: center;
-  color: white;
-  font-size: 20px;
-}
-
-.small-event .body {
-  flex: 65%;
-  display: grid;
-  place-content: center;
-  font-size: 15px;
-}
-
-.small-event .footer {
-  flex: 1%;
-  display: flex;
-  align-items: center;
-  place-content: center;
-  background-color: #0021A5;
-  color: white;
-  font-size: 15px;
-}
-
 .event {
   width: 400px;
   height: 350px;
@@ -208,15 +169,8 @@ body {
   flex-direction: column;
   margin-top: 20px;
   margin-bottom: 20px;
-  border: 5px solid #0021A5;
+  border: 1px solid #0021A5;
   font-family: 'Courier New', Courier, monospace;
-  border-radius: 10px; 
-}
-
-.event:hover, .small-event:hover {
-  box-shadow: #000000 0px 0px 10px 0px;
-  cursor: pointer;
-  outline: 5px solid rgb(101, 129, 255)
 }
 
 .event .title {
@@ -244,6 +198,49 @@ body {
   font-size: 20px;
 }
 
+.event:hover, .grid-event:hover {
+  box-shadow: #000000 0px 0px 10px 0px;
+  cursor: pointer;
+  outline: 5px solid rgb(101, 129, 255)
+}
+
+.grid-event {
+  width: 250px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #0021A5;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.grid-event .title {
+  flex: 2%;
+  background-color: #0021A5;
+  display: grid;
+  place-content: center;
+  color: white;
+  font-size: 20px;
+}
+
+.grid-event .body {
+  flex: 65%;
+  display: grid;
+  place-content: center;
+  font-size: 15px;
+}
+
+.grid-event .footer {
+  flex: 1%;
+  display: flex;
+  align-items: center;
+  place-content: right;
+  background-color: #0021A5;
+  color: white;
+  font-size: 15px;
+}
+
 .carousel{
   display: flex;
   align-items: center;
@@ -252,21 +249,20 @@ body {
   height: 350px;
   margin-top: 100px;
 }
+
 .carousel button {
-  width: 60px; /* Set the width */
-  height: 60px; /* Ensure height is the same as the width */
-  border-radius: 50%; /* This makes it a circle */
-  border: 2px solid #3498db; /* Optional: Adds a border */
-  color: white; /* Text color */
-  background-color: #0021A5; /* Button color */
-  font-size: 40px; /* Optional: Adjust font size */
-  text-align: center; /* Aligns the text to the center */
-  cursor: pointer; /* Changes cursor to pointer on hover */
+  width: 45px;
+  height: 45px;
+  color: #2f47aa;
+  border-radius: 50%;
+  background-color:  rgba(0, 0, 0, 0);
+  font-size: 40px;
+  cursor: pointer;
 }
 
 .carousel button:hover {
-  background-color: white;
-  color:#0021A5;
+  background-color: #0021a564;
+  color:white;
 }
 
 /* create event */
@@ -297,7 +293,6 @@ body {
 .form #inCreateEvent {
   border: 1px solid #FA4616;
   border-radius: 5px;
-  padding-left: 10px;
   font-size: 15px;
   overflow-wrap: break-word;
   text-wrap: wrap;
@@ -308,6 +303,8 @@ body {
   height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 490px;
+  padding-left: 10px
 }
 
 .addDescription {
@@ -317,12 +314,16 @@ body {
   inline-size: 487px;
   overflow-wrap: break-word;
   text-wrap: wrap;
+  padding: 10px;
+  width: 480px;
+  resize: none;
 }
 
-.addAuthor {
-  height: 30px;
+.addCategoryTag {
+  height: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 503px;
 }
 
 .form button {

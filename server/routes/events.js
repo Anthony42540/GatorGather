@@ -19,9 +19,14 @@ router.get('/byId/:id', async (req, res) => {
 })
 
 // Sends data to database MySQl
-router.post("/", async (req, res) => {
+router.post("/", validateTok, async (req, res) => {
     const event = req.body; // Grab the event data from the body that is sent in the request
-    req.body.categoryTag = req.body.categoryTag.join(',');
+    if (req.body.categoryTag) {
+        req.body.categoryTag = req.body.categoryTag.map(option => option.value).join(',');
+    } else {
+        req.body.categoryTag = null;
+    }
+    req.body.username = req.user.username;
     await Events.create(event); // Inserts into our table called "Events" in MySQL
     res.json(event);
 });

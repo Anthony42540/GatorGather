@@ -20,7 +20,7 @@ function Signup(){
                 alert(response.data.error)
             }
             else {
-                navigate(`/`)
+                navigate("/login")
             }
         });
     };
