@@ -16,8 +16,8 @@ const EventGrid = ({ listOfEvents, type}) => {
         return (
             <div className="grid-event" onClick={() => {navigate(`/event/${value.id}`)}}>
                 <div className="title">{value.title}</div>
+                <div className="footer">@{value.username}</div>
                 <div className="body">{value.eventDescription}</div>
-                <div className="footer">posted by: {value.username}</div>
             </div>
         )})}
     </div>
