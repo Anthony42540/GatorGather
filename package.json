@@ -1,6 +1,10 @@
 {
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
+    "date-fns": "^3.6.0",
+    "react": "^18.2.0",
+    "react-date-range": "^2.0.0-alpha.4",
+    "react-datepicker": "^6.9.0",
     "react-select": "^5.8.0",
     "sequelize": "^6.37.1",
     "sequelize-cli": "^6.6.2"

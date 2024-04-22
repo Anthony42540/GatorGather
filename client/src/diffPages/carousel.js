@@ -69,8 +69,7 @@ const Carousel = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, 
             itemsToShow.push(
                 <div key={index} className="event">
                     <div className="title">{item.title}</div>
-                    <div className="body" onClick={() => {navigate(`/event/${item.id}`)}}>{item.eventDescription}</div>
-                    <div className="footer">{item.username}
+                    <div className="footer">@{item.username}
                         <div className="likeButton">
                             <RecommendIcon onClick={() => {
                                 likeEvent(item.id);
@@ -80,6 +79,7 @@ const Carousel = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, 
                             <label> {item.Likes.length} </label>
                         </div>
                     </div> 
+                    <div className="body" onClick={() => {navigate(`/event/${item.id}`)}}>{item.eventDescription}</div>
                 </div>
             );
         }

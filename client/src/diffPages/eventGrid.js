@@ -53,9 +53,8 @@ const likeEvent = (eventId) => {
         return (
             <div className="grid-event">
                 <div className="title">{value.title}</div>
-                <div className="body" onClick={() => {navigate(`/event/${value.id}`)}}>{value.eventDescription}</div>
                 <div className="footer">
-                    <div className="username">posted by: {value.username}</div>
+                    <div className="username">@{value.username}</div>
                         <div className="likeButton">
                             <RecommendIcon onClick={() => {
                                 likeEvent(value.id);
@@ -65,6 +64,7 @@ const likeEvent = (eventId) => {
                             <label> {value.Likes.length} </label>
                         </div>
                 </div>
+                <div className="body" onClick={() => {navigate(`/event/${value.id}`)}}>{value.eventDescription}</div>
             </div>
         )})}
     </div>
