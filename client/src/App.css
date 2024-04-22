@@ -155,12 +155,13 @@ h1{
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
-  border: 0.5px solid #000000;
+  border: 0.5px solid #9a9a9a;
   font-family: 'Courier New', Courier, monospace;
   resize: none;
   padding: 5px;
   background-color: white;
   position: relative;
+  box-shadow: #00000060 3px 3px 10px 0px;
 }
 
 .event .title {
