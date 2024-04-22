@@ -7,11 +7,18 @@ import { categoryTagOptions } from "./categoryTags";
 
 function Home() {
     const [listOfEvents, setListOfEvents] = useState([]);
+    const [likedEvents, setLikedEvents] = useState([]);
     const [type, setType] = useState("all");
 
     useEffect(() => {
-        axios.get("http://localhost:5000/events").then((response) => {
-          setListOfEvents(response.data);
+        axios.get("http://localhost:5000/events", { 
+        headers: {accessToken: localStorage.getItem("token")},
+        })
+        .then((response) => {
+          setListOfEvents(response.data.listOfEvents);
+          setLikedEvents(response.data.likedEvents.map((like) => {
+            return like.EventId;
+          }))
         });
       }, []);
 
@@ -36,7 +43,7 @@ function Home() {
                   ))}
               </div>
           </div>
-          <EventGrid listOfEvents={listOfEvents} setListOfEvents={setListOfEvents} type={type}/>
+          <EventGrid listOfEvents={listOfEvents} setListOfEvents={setListOfEvents} likedEvents={likedEvents} setLikedEvents={setLikedEvents} type={type}/>
 
       </div>
     )

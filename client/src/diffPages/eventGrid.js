@@ -3,11 +3,11 @@ import axios from "axios";
 import RecommendIcon from '@mui/icons-material/Recommend';
 import "./home";
 
-const EventGrid = ({ listOfEvents, setListOfEvents, type}) => {
+const EventGrid = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, type}) => {
 
     let navigate = useNavigate();
 
-const likePost = (eventId) => {
+const likeEvent = (eventId) => {
     axios.post("http://localhost:5000/likes", 
         { EventId: eventId }, 
         { headers: {accessToken: localStorage.getItem("token")}}
@@ -28,6 +28,15 @@ const likePost = (eventId) => {
             }
         }))
     });
+
+    if (likedEvents.includes(eventId)) {
+        setLikedEvents(likedEvents.filter((id) => {
+            return id !== eventId;
+        }))
+    }
+    else {
+        setLikedEvents([...likedEvents, eventId]);
+    }
 };
 
     return (
@@ -40,9 +49,9 @@ const likePost = (eventId) => {
                     <div className="username">posted by: {value.username}</div>
                         <div className="likeButton">
                             <RecommendIcon onClick={() => {
-                                likePost(value.id);
+                                likeEvent(value.id);
                             }} 
-                            // className={}
+                             className={likedEvents.includes(value.id) ? "unlike" : "like"}
                             />
                             <label> {value.Likes.length} </label>
                         </div>
