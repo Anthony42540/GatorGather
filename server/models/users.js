@@ -14,10 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    // users.associate = (models) => {
-    //     users.hasMany(models.Events, {
-    //         onDelete: "cascade",
-    //     });
-    // };
+    users.associate = (models) => {
+        users.hasMany(models.Likes, {
+            onDelete: "cascade",
+        });
+    };
     return users
 };

@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { Events } = require("../models");
+const { Events, Likes } = require("../models");
 const { validateTok } = require("../middleware/MWauth");
 
 // retrieves data from database
 router.get("/", async (req, res) => {
-    let listOfEvents = await Events.findAll();
+    let listOfEvents = await Events.findAll({include: [Likes]});
     listOfEvents.forEach((event,index) => listOfEvents[index].categoryTag = listOfEvents[index].categoryTag?.split(','));
     res.json(listOfEvents);
 });

@@ -535,3 +535,22 @@ button {
   justify-content: center;
   align-items: center;
 }
+
+.footer .likeButton {
+  flex: 50%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.like {
+  color: rgba(250, 250, 250, 0.5);
+}
+.unlike {
+  color: white;
+}
+
+.buttons label {
+  margin-right: 15px;
+  margin-left: 10px;
+}

@@ -36,7 +36,7 @@ function Home() {
                   ))}
               </div>
           </div>
-          <EventGrid listOfEvents={listOfEvents} type={type}/>
+          <EventGrid listOfEvents={listOfEvents} setListOfEvents={setListOfEvents} type={type}/>
 
       </div>
     )
