@@ -25,7 +25,6 @@ function Home() {
       }, []);
 
     useEffect(() => {
-      
       const calcDisplayCount = () => {
         const eventWidth = 300;
         const screenWidth = window.innerWidth;
@@ -51,7 +50,7 @@ function Home() {
       if (filter === null) {
           setType("all");
       } else {
-          setType(filter.label);
+          setType(filter.value);
       }
     };
 
@@ -67,7 +66,7 @@ function Home() {
                   onChange={handleTypeChange}
                   options={categoryTagOptions}
                   isClearable={true}
-                  value={categoryTagOptions.find(option => option.label === type)}
+                  value={categoryTagOptions.find(option => option.value === type)}
                 >
                 </Select>
             </div>

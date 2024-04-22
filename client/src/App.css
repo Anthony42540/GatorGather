@@ -160,6 +160,7 @@ h1{
   resize: none;
   padding: 5px;
   background-color: white;
+  position: relative;
 }
 
 .event .title {
@@ -171,11 +172,14 @@ h1{
 }
 
 .event .body {
-  flex: 1%;
-  display: flex;
+  position: absolute;
+  bottom: 0;
+  height: 150px;
+  width: 280px;
   align-items: top;
   place-content: right;
   padding: 10px;
+  margin-bottom: 5px;
   background-color: #0021A5;
   color: white;
   font-size: 18px;
@@ -258,6 +262,8 @@ body {
   margin-bottom: 20px;
   padding: 5px;
   background-color: white;
+  resize: none;
+  position: relative;
 }
 
 .grid-event .title {
@@ -269,11 +275,14 @@ body {
 }
 
 .grid-event .body {
-  flex: 1%;
-  display: flex;
+  position: absolute;
+  bottom: 0;
+  height: 150px;
+  width: 280px;
   align-items: top;
   place-content: right;
   padding: 10px;
+  margin-bottom: 5px;
   background-color: #0021A5;
   color: white;
   font-size: 18px;
@@ -285,6 +294,30 @@ body {
   place-content: right;
   font-size: 15px;
   font-family: 'Courier New', Courier, monospace;
+}
+
+.likeButton {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  z-index: 100;
+}
+
+.like {
+  color: rgb(99, 142, 216);
+}
+.unlike {
+  color: white;
+}
+
+.likeButton label {
+  margin-right: 5px;
+  margin-top: 5px;
+  color: white;
 }
 
 /* create event */
@@ -560,23 +593,4 @@ button {
   display:flex;
   justify-content: center;
   align-items: center;
-}
-
-.footer .likeButton {
-  flex: 50%;
-  display: flex;
-  justify-content: right;
-  align-items: center;
-}
-
-.like {
-  color: rgb(131, 178, 236);
-}
-.unlike {
-  color: rgb(78, 92, 243);
-}
-
-.buttons label {
-  margin-right: 15px;
-  margin-left: 10px;
 }
