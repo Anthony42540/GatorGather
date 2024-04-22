@@ -50,6 +50,7 @@ function App() {
       <context.Provider value={{ authState, setAuthState }}>
         <Router>
           <div className="navbar">
+            <span style={{marginRight: "20px"}}/>
             <span className="tabs">
               <Link to="/">home</Link>
               <Link to="/createEvent">new event</Link>

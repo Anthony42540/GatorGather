@@ -14,14 +14,24 @@ router.get("/", async (req, res) => {
 router.get('/byId/:id', async (req, res) => {
     const id = req.params.id;
     let event = await Events.findByPk(id);
-    event.categoryTag = event.categoryTag?.split(',');
+    if(event.categoryTag){
+        event.categoryTag = event.categoryTag?.split(',');
+    }
+    else{
+        event.categoryTag = null;
+    }
     res.json(event);
 })
 
 // Sends data to database MySQl
-router.post("/", async (req, res) => {
+router.post("/", validateTok, async (req, res) => {
     const event = req.body; // Grab the event data from the body that is sent in the request
-    req.body.categoryTag = req.body.categoryTag.join(',');
+    if (req.body.categoryTag) {
+        req.body.categoryTag = req.body.categoryTag.map(option => option.value).join(',');
+    } else {
+        req.body.categoryTag = null;
+    }
+    req.body.username = req.user.username;
     await Events.create(event); // Inserts into our table called "Events" in MySQL
     res.json(event);
 });

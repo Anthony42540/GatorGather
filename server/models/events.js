@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const events = sequelize.define("Events", {
-        author: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         categoryTag: {
              type: DataTypes.STRING,
-             allowNULL: false,
+             allowNULL: true,
         },
     });
 

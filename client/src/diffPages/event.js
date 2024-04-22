@@ -42,7 +42,7 @@ function Event() {
           <div className='left'>
             <div className='eventInfo' id="individual">
               <div className="title">{eventObject.title}</div>
-              <div className="footer">@{eventObject.author} </div>
+              <div className="footer">@{eventObject.username} </div>
               <div className="body">{eventObject.eventDescription}</div>
             </div>
           </div>

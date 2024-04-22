@@ -1,15 +1,23 @@
 import { useNavigate } from "react-router-dom";
 
 const EventGrid = ({ listOfEvents, type}) => {
-
     let navigate = useNavigate();
-    return (
-    <div className="events-grid">{listOfEvents.filter(event=>event.categoryTag?.includes(type) || type==="all").map((value, index) => {
+
+    const filteredEvents = listOfEvents.filter(event => event.categoryTag?.includes(type) || type === "all");
+
+    if (filteredEvents.length === 0) {
         return (
-            <div className="small-event" onClick={() => {navigate(`/event/${value.id}`)}}>
+            <div className="empty-grid">oops, no upcoming events match your search!</div>
+        );
+    }
+
+    return (
+    <div className="events-grid">{filteredEvents.map((value, index) => {
+        return (
+            <div className="grid-event" onClick={() => {navigate(`/event/${value.id}`)}}>
                 <div className="title">{value.title}</div>
                 <div className="body">{value.eventDescription}</div>
-                <div className="footer">posted by: {value.author}</div>
+                <div className="footer">posted by: {value.username}</div>
             </div>
         )})}
     </div>
