@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { context } from "../assists/context";
 import { trackPromise } from "react-promise-tracker";
-import Loader from "react-loader-spinner";
 
 function Login(){
     let navigate = useNavigate()
