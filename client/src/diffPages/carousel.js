@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
@@ -8,6 +8,14 @@ import "./home";
 import axios from "axios";
 
 const Carousel = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, displayCount, type }) => {
+    const [topEventsList, setTopEventsList] = useState([]);
+    
+    useEffect(() => {
+        const sortEvents = listOfEvents.toSorted((a, b) => b.Likes.length - a.Likes.length);
+        const top10Events = sortEvents.slice(0, Math.min(10, sortEvents.length));
+        setTopEventsList(top10Events);
+    }, [listOfEvents]);
+
     const likeEvent = (eventId) => {
         axios.post("http://localhost:5000/likes", 
             { EventId: eventId }, 
@@ -44,41 +52,39 @@ const Carousel = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, 
     let navigate = useNavigate();
 
     const goToPrevSlide = () => {
-        const newIndex = currentIndex === 0 ? listOfEvents.length - 1 : currentIndex - 1;
+        const newIndex = currentIndex === 0 ? topEventsList.length - 1 : currentIndex - 1;
         setCurrentIndex(newIndex);
     };
 
     const goToNextSlide = () => {
-        const newIndex = currentIndex === listOfEvents.length - 1 ? 0 : currentIndex + 1;
+        const newIndex = currentIndex === topEventsList.length - 1 ? 0 : currentIndex + 1;
         setCurrentIndex(newIndex);
     };
 
-    // Render items based on currentIndex and displayCount
     const renderItems = () => {
         let itemsToShow = [];
-        if(listOfEvents.length === 0){
+        if(topEventsList.length === 0){
             return "";
         }
-        else if (listOfEvents.length < displayCount){
-            displayCount = listOfEvents.length;
+        else if (topEventsList.length < displayCount){
+            displayCount = topEventsList.length;
         }
 
         for (let i = 0; i < displayCount; i++) {
-            let index = (currentIndex + i) % listOfEvents.length; // Wrap around if index exceeds items length
-            let item = listOfEvents[index];
+            let index = (currentIndex + i) % topEventsList.length; // Wrap around if index exceeds items length
+            let item = topEventsList[index];
             itemsToShow.push(
                 <div key={index} className="event">
                     <div className="title">{item.title}</div>
-                    <div className="footer">@{item.username}
-                        <div className="likeButton">
-                            <RecommendIcon onClick={() => {
-                                likeEvent(item.id);
-                            }} 
-                                className={likedEvents.includes(item.id) ? "unlike" : "like"}
-                            />
-                            <label> {item.Likes.length} </label>
-                        </div>
-                    </div> 
+                    <div className="footer">@{item.username}</div> 
+                    <div className="likeButton">
+                        <RecommendIcon onClick={() => {
+                            likeEvent(item.id);
+                        }} 
+                            className={likedEvents.includes(item.id) ? "unlike" : "like"}
+                        />
+                        <label> {item.Likes.length} </label>
+                    </div>
                     <div className="body" onClick={() => {navigate(`/event/${item.id}`)}}>{item.eventDescription}</div>
                 </div>
             );
