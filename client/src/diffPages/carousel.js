@@ -11,8 +11,7 @@ const Carousel = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, 
     const [topEventsList, setTopEventsList] = useState([]);
     
     useEffect(() => {
-        let sortEvents = listOfEvents;
-        sortEvents = sortEvents.sort((a, b) => b.Likes.length - a.Likes.length);
+        const sortEvents = listOfEvents.toSorted((a, b) => b.Likes.length - a.Likes.length);
         const top10Events = sortEvents.slice(0, Math.min(10, sortEvents.length));
         setTopEventsList(top10Events);
     }, [listOfEvents]);
