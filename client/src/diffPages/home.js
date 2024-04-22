@@ -8,17 +8,19 @@ import { categoryTagOptions } from "./categoryTags";
 
 function Home() {
     const [listOfEvents, setListOfEvents] = useState([]);
+    const [likedEvents, setLikedEvents] = useState([]);
     const [type, setType] = useState("all");
     const [displayCount, setDisplayCount] = useState();
 
     useEffect(() => {
-        axios.get("http://localhost:5000/events").then((response) => {
-          setListOfEvents(response.data);
-          if (Object.keys(listOfEvents).length === 0) {
-            return (
-              <div className="noEvents">Oops, nothings going on right now. Check back later for upcoming events!</div>
-            )
-        }
+      axios.get("http://localhost:5000/events", { 
+        headers: {accessToken: localStorage.getItem("token")},
+        })
+        .then((response) => {
+          setListOfEvents(response.data.listOfEvents);
+          setLikedEvents(response.data.likedEvents.map((like) => {
+            return like.EventId;
+          }))
         });
       }, []);
 
@@ -55,7 +57,7 @@ function Home() {
 
     return (
       <div>
-          <Carousel listOfEvents={listOfEvents} displayCount={displayCount} className="carousel"/>
+          <Carousel listOfEvents={listOfEvents} displayCount={displayCount}  className="carousel" setListOfEvents={setListOfEvents} likedEvents={likedEvents} setLikedEvents={setLikedEvents}/>
           <div className="grid-area">
             <div className="filterbar">
                 <span className="prompt">I'm looking for</span>
@@ -70,7 +72,7 @@ function Home() {
                 </Select>
             </div>
             <div >
-              <EventGrid listOfEvents={listOfEvents} type={type}/>
+              <EventGrid listOfEvents={listOfEvents} setListOfEvents={setListOfEvents} likedEvents={likedEvents} setLikedEvents={setLikedEvents} type={type}/>
             </div>
           </div>
           

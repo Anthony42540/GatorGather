@@ -55,7 +55,7 @@ function App() {
               <Link to="/">home</Link>
               <Link to="/createEvent">new event</Link>
             </span>
-
+            
             {!authState.status ? (
               <span className="signupTab">
                 <Link to="/signup">sign up or login</Link>
@@ -73,7 +73,12 @@ function App() {
             )}
           </div>
           <Routes>
-            <Route path="/" element={ <Home/> } />
+            
+            {!authState.status ? (
+              <Route path="/" element={ <Signup/> } />
+              ):(
+                <Route path="/" element={ <Home/> } />
+            )}
 
             {!authState.status ? (
               <Route path="/createEvent" element={ <Signup/> } />

@@ -1,7 +1,44 @@
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import RecommendIcon from '@mui/icons-material/Recommend';
+import "./home";
 
-const EventGrid = ({ listOfEvents, type}) => {
+const EventGrid = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, type }) => {
+
     let navigate = useNavigate();
+
+const likeEvent = (eventId) => {
+    axios.post("http://localhost:5000/likes", 
+        { EventId: eventId }, 
+        { headers: {accessToken: localStorage.getItem("token")}}
+        ).then((response) => {
+        setListOfEvents(listOfEvents.map((event) => {
+            if (event.id === eventId) {
+                if (response.data.liked) {
+                    return {...event, Likes: [...event.Likes, 0]};
+                }
+                else {
+                    const likeArr = event.Likes;
+                    likeArr.pop();
+                    return {...event, Likes: likeArr};
+                }
+            }
+            else {
+                return event;
+            }
+        }))
+    });
+
+    if (likedEvents.includes(eventId)) {
+        setLikedEvents(likedEvents.filter((id) => {
+            return id !== eventId;
+        }))
+    }
+    else {
+        setLikedEvents([...likedEvents, eventId]);
+    }
+};
+
 
     const filteredEvents = listOfEvents.filter(event => event.categoryTag?.includes(type) || type === "all");
 
@@ -14,10 +51,20 @@ const EventGrid = ({ listOfEvents, type}) => {
     return (
     <div className="events-grid">{filteredEvents.map((value, index) => {
         return (
-            <div className="grid-event" onClick={() => {navigate(`/event/${value.id}`)}}>
+            <div className="grid-event">
                 <div className="title">{value.title}</div>
-                <div className="footer">@{value.username}</div>
-                <div className="body">{value.eventDescription}</div>
+                <div className="footer">
+                    <div className="username">@{value.username}</div>
+                        <div className="likeButton">
+                            <RecommendIcon onClick={() => {
+                                likeEvent(value.id);
+                            }} 
+                             className={likedEvents.includes(value.id) ? "unlike" : "like"}
+                            />
+                            <label> {value.Likes.length} </label>
+                        </div>
+                </div>
+                <div className="body" onClick={() => {navigate(`/event/${value.id}`)}}>{value.eventDescription}</div>
             </div>
         )})}
     </div>

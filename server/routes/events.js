@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { Events } = require("../models");
+const { Events, Likes } = require("../models");
 const { validateTok } = require("../middleware/MWauth");
 
 // retrieves data from database
-router.get("/", async (req, res) => {
-    let listOfEvents = await Events.findAll();
+router.get("/", validateTok, async (req, res) => {
+    let listOfEvents = await Events.findAll({include: [Likes]});
     listOfEvents.forEach((event,index) => listOfEvents[index].categoryTag = listOfEvents[index].categoryTag?.split(','));
-    res.json(listOfEvents);
+    const likedEvents = await Likes.findAll({ where: {userId: req.user.id }})
+    res.json({ listOfEvents: listOfEvents, likedEvents: likedEvents });
 });
 
 // retrieves individual event information by ID
@@ -35,5 +36,17 @@ router.post("/", validateTok, async (req, res) => {
     await Events.create(event); // Inserts into our table called "Events" in MySQL
     res.json(event);
 });
+
+router.delete("/:eventId", validateTok, async (req, res) => {
+    const eventId = req.params.eventId;
+
+    await Events.destroy({
+        where: {
+            id: eventId,
+        },
+    });
+
+    res.json("DELETED SUCCESSFULLY")
+})
 
 module.exports = router;

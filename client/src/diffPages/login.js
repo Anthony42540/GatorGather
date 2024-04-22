@@ -2,6 +2,8 @@ import React, { useState, useContext }  from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { context } from "../assists/context";
+import { trackPromise } from "react-promise-tracker";
+import Loader from "react-loader-spinner";
 
 function Login(){
     let navigate = useNavigate()
@@ -12,6 +14,7 @@ function Login(){
 
     const login = () => {
         const data = {username: username, password: password};
+        trackPromise (
         axios.post("http://localhost:5000/authentication/login", data).then((response) => {
             if(response.data.error) {
                 alert(response.data.error)
@@ -24,7 +27,7 @@ function Login(){
                     status: true});
                 navigate(`/`);
             }
-        });
+        }));
     };
 
     return (    
