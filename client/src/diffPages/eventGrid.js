@@ -39,8 +39,17 @@ const likeEvent = (eventId) => {
     }
 };
 
+
+    const filteredEvents = listOfEvents.filter(event => event.categoryTag?.includes(type) || type === "all");
+
+    if (filteredEvents.length === 0) {
+        return (
+            <div className="empty-grid">oops, no upcoming events match your search!</div>
+        );
+    }
+
     return (
-    <div className="events-grid">{listOfEvents.filter(event=>event.categoryTag?.includes(type) || type==="all").map((value, index) => {
+    <div className="events-grid">{filteredEvents.map((value, index) => {
         return (
             <div className="grid-event">
                 <div className="title">{value.title}</div>

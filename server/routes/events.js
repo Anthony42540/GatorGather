@@ -15,7 +15,12 @@ router.get("/", validateTok, async (req, res) => {
 router.get('/byId/:id', async (req, res) => {
     const id = req.params.id;
     let event = await Events.findByPk(id);
-    event.categoryTag = event.categoryTag?.split(',');
+    if(event.categoryTag){
+        event.categoryTag = event.categoryTag?.split(',');
+    }
+    else{
+        event.categoryTag = null;
+    }
     res.json(event);
 })
 
