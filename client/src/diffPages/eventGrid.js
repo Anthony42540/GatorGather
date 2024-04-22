@@ -3,7 +3,7 @@ import axios from "axios";
 import RecommendIcon from '@mui/icons-material/Recommend';
 import "./home";
 
-const EventGrid = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, type}) => {
+const EventGrid = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, type }) => {
 
     let navigate = useNavigate();
 

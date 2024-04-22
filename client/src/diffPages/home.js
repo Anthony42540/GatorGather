@@ -57,7 +57,7 @@ function Home() {
 
     return (
       <div>
-          <Carousel listOfEvents={listOfEvents} displayCount={displayCount} className="carousel"/>
+          <Carousel listOfEvents={listOfEvents} displayCount={displayCount}  className="carousel" setListOfEvents={setListOfEvents} likedEvents={likedEvents} setLikedEvents={setLikedEvents}/>
           <div className="grid-area">
             <div className="filterbar">
                 <span className="prompt">I'm looking for</span>

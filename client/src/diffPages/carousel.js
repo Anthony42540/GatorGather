@@ -3,8 +3,43 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import RecommendIcon from '@mui/icons-material/Recommend';
+import "./home";
+import axios from "axios";
 
-const Carousel = ({ listOfEvents, displayCount }) => {
+const Carousel = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, displayCount, type }) => {
+    const likeEvent = (eventId) => {
+        axios.post("http://localhost:5000/likes", 
+            { EventId: eventId }, 
+            { headers: {accessToken: localStorage.getItem("token")}}
+            ).then((response) => {
+            setListOfEvents(listOfEvents.map((event) => {
+                if (event.id === eventId) {
+                    if (response.data.liked) {
+                        return {...event, Likes: [...event.Likes, 0]};
+                    }
+                    else {
+                        const likeArr = event.Likes;
+                        likeArr.pop();
+                        return {...event, Likes: likeArr};
+                    }
+                }
+                else {
+                    return event;
+                }
+            }))
+        });
+    
+        if (likedEvents.includes(eventId)) {
+            setLikedEvents(likedEvents.filter((id) => {
+                return id !== eventId;
+            }))
+        }
+        else {
+            setLikedEvents([...likedEvents, eventId]);
+        }
+    };
+    
     const [currentIndex, setCurrentIndex] = useState(0);
     let navigate = useNavigate();
 
@@ -32,10 +67,19 @@ const Carousel = ({ listOfEvents, displayCount }) => {
             let index = (currentIndex + i) % listOfEvents.length; // Wrap around if index exceeds items length
             let item = listOfEvents[index];
             itemsToShow.push(
-                <div key={index} className="event" onClick={() => {navigate(`/event/${item.id}`)}}>
+                <div key={index} className="event">
                     <div className="title">{item.title}</div>
-                    <div className="body">{item.eventDescription}</div>
-                    <div className="footer">{item.username}</div>
+                    <div className="body" onClick={() => {navigate(`/event/${item.id}`)}}>{item.eventDescription}</div>
+                    <div className="footer">{item.username}
+                        <div className="likeButton">
+                            <RecommendIcon onClick={() => {
+                                likeEvent(item.id);
+                            }} 
+                                className={likedEvents.includes(item.id) ? "unlike" : "like"}
+                            />
+                            <label> {item.Likes.length} </label>
+                        </div>
+                    </div> 
                 </div>
             );
         }
