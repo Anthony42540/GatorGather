@@ -293,10 +293,14 @@ body {
 }
 
 .grid-event .footer {
-  display: inline-flex;
+  display: inline;
   place-content: right;
   font-size: 15px;
   font-family: 'Courier New', Courier, monospace;
+}
+
+.footer .dateTime{
+  display: block;
 }
 
 .likeButton {

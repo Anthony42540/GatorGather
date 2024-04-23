@@ -53,7 +53,9 @@ function Event() {
           <div className='left'>
             <div className='eventInfo' id="individual">
               <div className="title">{eventObject.title}</div>
-              <div className="footer">@{eventObject.username} </div>
+                <div className="footer">{eventObject.dateTime ? new Date(eventObject.dateTime).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", hour:"numeric", minute:"numeric"}) : ""}</div>
+
+                <div className="footer">@{eventObject.username} </div>
               <div class="flex-box-2">
                 {authState.username === eventObject.username && <button onClick={() => {deleteEvent(eventObject.id)}}>Delete Event</button>}
               </div>

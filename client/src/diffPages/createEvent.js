@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { categoryTagOptions } from "./categoryTags";
 import { SelectField } from "./dropDown";
+import { DateTime } from "./DateTime.js";
 
 function CreateEvent() {
     let navigate = useNavigate()
@@ -37,7 +38,8 @@ function CreateEvent() {
     const valSchema = yup.object().shape({
         title: yup.string().min(1).max(30, "Title must not exceed 30 characters.").required("Please input a title!"),
         eventDescription: yup.string().required("Please write a description for your event!"),
-        categoryTag: yup.array()
+        categoryTag: yup.array(),
+        dateTime: yup.date().min((new Date()).toISOString(), "Time must be in the future!").required("Please choose a date and time!")
     })
 
     return (
@@ -60,6 +62,14 @@ function CreateEvent() {
                         placeholder="event description" 
                         className="addDescription" 
                         component="textarea"
+                    />
+                    <ErrorMessage name="dateTime" component="span"/>
+                    <Field
+                        name="dateTime"
+                        id="inCreateEvent"
+                        component={DateTime}
+                        placeholder="add date and time"
+                        className="addDateTime"
                     />
                     <ErrorMessage name="categoryTag" component="span"/>
                     <Field 

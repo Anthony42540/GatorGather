@@ -38,9 +38,11 @@ const likeEvent = (eventId) => {
         setLikedEvents([...likedEvents, eventId]);
     }
 };
-
-
-    const filteredEvents = listOfEvents.filter(event => event.categoryTag?.includes(type) || type === "all");
+    const maxNum = 9999999999999;
+    const compFunc = (eventA, eventB) => {
+        return (eventA.dateTime ? new Date(eventA.dateTime) : maxNum) - (eventB.dateTime ? new Date(eventB.dateTime) : maxNum);
+    }
+    const filteredEvents = listOfEvents.sort(compFunc).filter(event => event.categoryTag?.includes(type) || type === "all");
 
     if (filteredEvents.length === 0) {
         return (
@@ -54,6 +56,7 @@ const likeEvent = (eventId) => {
             <div className="grid-event">
                 <div className="title">{value.title}</div>
                 <div className="footer">
+                    <div className="dateTime">{value.dateTime ? new Date(value.dateTime).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", hour:"numeric", minute:"numeric"}) : ""}</div>
                     <div className="username">@{value.username}</div>
                         <div className="likeButton">
                             <RecommendIcon onClick={() => {

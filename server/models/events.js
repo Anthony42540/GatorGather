@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         categoryTag: {
              type: DataTypes.STRING,
-             allowNULL: true,
+             allowNull: true,
+        },
+        dateTime: {
+            type: DataTypes.DATE,
+            allowNull: true,
         },
     });
 

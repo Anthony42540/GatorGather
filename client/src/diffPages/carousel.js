@@ -76,7 +76,8 @@ const Carousel = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, 
             itemsToShow.push(
                 <div key={index} className="event">
                     <div className="title">{item.title}</div>
-                    <div className="footer">@{item.username}</div> 
+                    <div className="dateTime">{item.dateTime ? new Date(item.dateTime).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", hour:"numeric", minute:"numeric"}) : ""}</div>
+                    <div className="footer">@{item.username}</div>
                     <div className="likeButton">
                         <RecommendIcon onClick={() => {
                             likeEvent(item.id);
