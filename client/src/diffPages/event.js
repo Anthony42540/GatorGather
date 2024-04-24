@@ -44,7 +44,9 @@ function Event() {
       axios.delete(`http://localhost:5000/comments/${id}`, {
         headers: { accessToken: localStorage.getItem("token")}
       }).then(() => {
-        navigate('/');
+          setComments(comments.filter((val) => {
+            return val.id != id;
+          }))
       });
     }
 

@@ -17,7 +17,7 @@ function Signup(){
 
     const onSubmit = (data) => {
         axios.post("http://localhost:5000/authentication", data).then((response) => {
-        //verifyEmail(data);
+        
         register:     
             if(response.data.error) {
                 alert(response.data.error)
