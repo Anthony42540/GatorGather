@@ -11,7 +11,7 @@ const Carousel = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, 
     const [topEventsList, setTopEventsList] = useState([]);
     
     useEffect(() => {
-        const sortEvents = listOfEvents.toSorted((a, b) => b.Likes.length - a.Likes.length);
+        const sortEvents = listOfEvents.toSorted((a, b) => b.Likes.length - a.Likes.length).filter(event => event.dateTime ?  new Date(event.dateTime) > new Date() : {});
         const top10Events = sortEvents.slice(0, Math.min(10, sortEvents.length));
         setTopEventsList(top10Events);
     }, [listOfEvents]);
@@ -76,7 +76,7 @@ const Carousel = ({ listOfEvents, setListOfEvents, likedEvents, setLikedEvents, 
             itemsToShow.push(
                 <div key={index} className="event">
                     <div className="title">{item.title}</div>
-                    <div className="dateTime">{item.dateTime ? new Date(item.dateTime).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", hour:"numeric", minute:"numeric"}) : ""}</div>
+                    <div className="dateTime">{item.dateTime ? new Date(item.dateTime).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric", /*year:"numeric",*/  hour:"numeric", minute:"numeric"}).replace(',','') : ""}</div>
                     <div className="footer">@{item.username}</div>
                     <div className="likeButton">
                         <RecommendIcon onClick={() => {

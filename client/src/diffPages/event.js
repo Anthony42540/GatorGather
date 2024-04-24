@@ -53,7 +53,7 @@ function Event() {
           <div className='left'>
             <div className='eventInfo' id="individual">
               <div className="title">{eventObject.title}</div>
-                <div className="footer">{eventObject.dateTime ? new Date(eventObject.dateTime).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", hour:"numeric", minute:"numeric"}) : ""}</div>
+                <div className="footer">{eventObject.dateTime ? new Date(eventObject.dateTime).toLocaleDateString('en-us', { weekday:"long", day:"numeric", /*year:"numeric",*/ month:"short", hour:"numeric", minute:"numeric"}).replace(',','') : ""}</div>
 
                 <div className="footer">@{eventObject.username} </div>
               <div class="flex-box-2">
