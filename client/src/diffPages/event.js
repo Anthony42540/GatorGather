@@ -40,11 +40,22 @@ function Event() {
       });
     }
 
+    const deleteComment = (id) => {
+      axios.delete(`http://localhost:5000/comments/${id}`, {
+        headers: { accessToken: localStorage.getItem("token")}
+      }).then(() => {
+        navigate('/');
+      });
+    }
+
     const deleteEvent = (id) => {
       axios.delete(`http://localhost:5000/events/${id}`, {
         headers: { accessToken: localStorage.getItem("token") },
       })
       .then(() => {
+        setComments(comments.filter((val) => {
+          return val.id != id;
+        }))
         navigate('/');
       });
     }
@@ -74,6 +85,8 @@ function Event() {
                     <label style={{color: 'blue'}}>
                       @{comment.username}:
                     </label>
+                    {authState.username === comment.username &&(
+                    <button onClick={() => deleteComment(comment.id)}> X</button>)}
                     <div> </div>
                     {comment.commentBody}
                   </div>

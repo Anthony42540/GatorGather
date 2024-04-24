@@ -18,5 +18,16 @@ router.post("/", validateTok, async (req, res) => {
     await Comments.create(comment)
     res.json(comment)
 })
+// need to check where commentId is in other pages
+router.delete("/:commentId", validateTok, async (req, res) => {
+    const commentId = req.params.commentId;
+
+    await Comments.destroy(
+        {where: {
+            id: commentId,
+
+        },
+    })
+})
 
 module.exports = router;
